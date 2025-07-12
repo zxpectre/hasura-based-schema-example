@@ -1,0 +1,3382 @@
+{
+  "resource_version": 697,
+  "metadata": {
+    "version": 3,
+    "sources": [
+      {
+        "name": "default",
+        "kind": "postgres",
+        "tables": [
+          {
+            "table": {
+              "name": "ActiveStake",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "activeStake",
+                "select_aggregate": "activeStake_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "epoch",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "epochNo": "number"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Epoch",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "registeredWith",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "stakePoolHash": "hash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "StakePool",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "address",
+                    "amount",
+                    "epochNo",
+                    "stakePoolHash",
+                    "stakePoolId"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "Asset",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "delete": "delete_assets",
+                "insert": "insert_assets",
+                "select": "assets",
+                "select_aggregate": "assets_aggregate",
+                "update": "update_assets"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "firstAppearedInBlock",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "firstAppearedInSlot": "slotNo"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Block",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "tokenMints",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "assetName": "assetName",
+                      "policyId": "policyId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "TokenMint",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "check": {},
+                  "columns": [
+                    "assetId",
+                    "assetName",
+                    "decimals",
+                    "description",
+                    "fingerprint",
+                    "firstAppearedInSlot",
+                    "logo",
+                    "metadataHash",
+                    "name",
+                    "policyId",
+                    "ticker",
+                    "url"
+                  ]
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "assetId",
+                    "assetName",
+                    "policyId",
+                    "fingerprint",
+                    "metadataHash",
+                    "description",
+                    "logo",
+                    "name",
+                    "ticker",
+                    "url",
+                    "decimals",
+                    "firstAppearedInSlot"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ],
+            "update_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "assetId",
+                    "assetName",
+                    "policyId",
+                    "fingerprint",
+                    "metadataHash",
+                    "description",
+                    "logo",
+                    "name",
+                    "ticker",
+                    "url",
+                    "decimals",
+                    "firstAppearedInSlot"
+                  ],
+                  "filter": {},
+                  "check": {}
+                }
+              }
+            ],
+            "delete_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "Block",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "blocks",
+                "select_aggregate": "blocks_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "epoch",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "epochNo": "number"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Epoch",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "nextBlock",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "nextBlockHash": "hash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Block",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "previousBlock",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "previousBlockHash": "hash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Block",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "slotLeader",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "slot_leader_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "SlotLeader",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "transactions",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "hash": "blockHash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "epochNo",
+                    "fees",
+                    "forgedAt",
+                    "hash",
+                    "nextBlockHash",
+                    "number",
+                    "opCert",
+                    "pool_hash_id",
+                    "previousBlockHash",
+                    "protocolVersion",
+                    "size",
+                    "slotInEpoch",
+                    "slotNo",
+                    "transactionsCount",
+                    "vrfKey"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "Cardano",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "cardano"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "currentEpoch",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "currentEpochNo": "number"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Epoch",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "tip",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tipBlockNo": "number"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Block",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "currentEpochNo",
+                    "tipBlockNo"
+                  ],
+                  "filter": {},
+                  "limit": 1
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "CollateralInput",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "collateralInputs",
+                "select_aggregate": "collateralInputs_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "sourceTransaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "sourceTxHash": "hash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "txHash": "hash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "tokens",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "source_tx_out_id": "tx_out_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "TokenInOutput",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "address",
+                    "sourceTxHash",
+                    "sourceTxIndex",
+                    "txHash",
+                    "value"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "CollateralOutput",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "collateralOutputs",
+                "select_aggregate": "collateralOutputs_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "datum",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "inline_datum_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Datum",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "script",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "reference_script_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Script",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "txHash": "hash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "address",
+                    "addressHasScript",
+                    "index",
+                    "paymentCredential",
+                    "txHash",
+                    "value"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "Datum",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "firstIncludedIn",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "bytes",
+                    "hash",
+                    "value"
+                  ],
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "Delegation",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "delegations",
+                "select_aggregate": "delegations_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "redeemer",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "redeemerId": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Redeemer",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "stakePool",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "pool_hash_id": "hash_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "StakePool",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "address"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "DelegationVote",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "delegationVotes",
+                "select_aggregate": "delegationVotes_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "drep",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "drep_hash_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "drep_hash",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "redeemer",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "redeemerId": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Redeemer",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "address",
+                    "drep_hash_id",
+                    "tx_id",
+                    "redeemerId"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "DrepRegistration",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "drepRegistrations",
+                "select_aggregate": "drepRegistrations_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "votingAnchor",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "voting_anchor_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "voting_anchor",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "DRepId",
+                    "deposit",
+                    "tx_id",
+                    "voting_anchor_id"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "Epoch",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "epochs",
+                "select_aggregate": "epochs_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "adaPots",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "number": "epoch_no"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "ada_pots",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "protocolParams",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "number": "epoch_no"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "ProtocolParams",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "activeStake",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "number": "epochNo"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "ActiveStake",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "blocks",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "number": "epochNo"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Block",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "blocksCount",
+                    "fees",
+                    "lastBlockTime",
+                    "nonce",
+                    "number",
+                    "output",
+                    "startedAt",
+                    "transactionsCount"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "ProtocolParams",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "a0",
+                    "coinsPerUtxoByte",
+                    "collateralPercent",
+                    "costModels",
+                    "decentralisationParam",
+                    "eMax",
+                    "epoch_no",
+                    "extraEntropy",
+                    "keyDeposit",
+                    "maxBlockBodySize",
+                    "maxBlockExMem",
+                    "maxBlockExSteps",
+                    "maxBlockHeaderSize",
+                    "maxCollateralInputs",
+                    "maxTxExMem",
+                    "maxTxExSteps",
+                    "maxTxSize",
+                    "maxValSize",
+                    "minFeeA",
+                    "minFeeB",
+                    "minPoolCost",
+                    "minUTxOValue",
+                    "nOpt",
+                    "poolDeposit",
+                    "priceMem",
+                    "priceStep",
+                    "protocolVersion",
+                    "rho",
+                    "tau"
+                  ],
+                  "filter": {},
+                  "limit": 2500
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "Redeemer",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "redeemers",
+                "select_aggregate": "redeemers_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "datum",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "redeemer_datum_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "RedeemerDatum",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "txId": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "fee",
+                    "index",
+                    "purpose",
+                    "scriptHash",
+                    "unitMem",
+                    "unitSteps"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "RedeemerDatum",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "firstIncludedIn",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "bytes",
+                    "hash",
+                    "value"
+                  ],
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "ReferenceInput",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "sourceTransaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "sourceTxHash": "hash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "txHash": "hash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "tokens",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "source_tx_out_id": "tx_out_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "TokenInOutput",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "address",
+                    "sourceTxHash",
+                    "sourceTxIndex",
+                    "txHash",
+                    "value"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "Reward",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "rewards",
+                "select_aggregate": "rewards_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "earnedIn",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "earnedInEpochNo": "number"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Epoch",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "receivedIn",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "receivedInEpochNo": "number"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Epoch",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "stakePool",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "pool_hash_id": "hash_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "StakePool",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "address",
+                    "amount",
+                    "type"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "Script",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "scripts",
+                "select_aggregate": "scripts_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "txId": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "hash",
+                    "serialisedSize",
+                    "type"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "SlotLeader",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "stakePool",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "pool_hash_id": "hash_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "StakePool",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "description",
+                    "hash"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "StakeDeregistration",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "stakeDeregistrations",
+                "select_aggregate": "stakeDeregistrations_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "redeemer",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "redeemerId": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Redeemer",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "address"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "StakePool",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "stakePools",
+                "select_aggregate": "stakePools_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "updatedIn",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "updated_in_tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "activeStake",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "hash": "stakePoolHash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "ActiveStake",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "blocks",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "hash_id": "pool_hash_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Block",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "delegators",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "hash_id": "pool_hash_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Delegation",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "owners",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "hash_id": "pool_hash_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "StakePoolOwner",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "relays",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "update_id": "update_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "pool_relay",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "retirements",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "hash_id": "pool_hash_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "StakePoolRetirement",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "rewards",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "hash_id": "pool_hash_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Reward",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "fixedCost",
+                    "hash",
+                    "id",
+                    "margin",
+                    "metadataHash",
+                    "pledge",
+                    "rewardAddress",
+                    "url"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "StakePoolOwner",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "stakePool",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "hash": "hash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "StakePool",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "hash"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "StakePoolRetirement",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "announcedIn",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "retiredInEpoch",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "inEffectFrom": "transactionsCount"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Epoch",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "stakePool",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "pool_hash_id": "hash_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "StakePool",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "inEffectFrom"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "StakeRegistration",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "stakeRegistrations",
+                "select_aggregate": "stakeRegistrations_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "address"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "TokenInOutput",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "asset",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "assetId": "assetId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Asset",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transactionOutput",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_out_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "TransactionOutput",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "assetId",
+                    "assetName",
+                    "policyId",
+                    "quantity"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "TokenMint",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "tokenMints",
+                "select_aggregate": "tokenMints_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "asset",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "assetId": "assetId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Asset",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "assetId",
+                    "assetName",
+                    "policyId",
+                    "quantity"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "Transaction",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "transactions",
+                "select_aggregate": "transactions_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "block",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "blockHash": "hash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Block",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "collateralInputs",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "hash": "txHash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "CollateralInput",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "collateralOutputs",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "hash": "txHash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "CollateralOutput",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "inputs",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "hash": "txHash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "TransactionInput",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "metadata",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "tx_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "tx_metadata",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "mint",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "tx_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "TokenMint",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "outputs",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "hash": "txHash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "TransactionOutput",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "redeemers",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "txId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Redeemer",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "referenceInputs",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "hash": "txHash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "ReferenceInput",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "scripts",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "txId"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Script",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "withdrawals",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "tx_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Withdrawal",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "blockHash",
+                    "blockIndex",
+                    "deposit",
+                    "fee",
+                    "hash",
+                    "includedAt",
+                    "invalidBefore",
+                    "invalidHereafter",
+                    "scriptSize",
+                    "size",
+                    "totalOutput",
+                    "validContract",
+                    "treasuryDonation"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "TransactionInput",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "redeemer",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "redeemerId": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Redeemer",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "sourceTransaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "sourceTxHash": "hash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "txHash": "hash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "tokens",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "source_tx_out_id": "tx_out_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "TokenInOutput",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "address",
+                    "value",
+                    "txHash",
+                    "sourceTxHash",
+                    "sourceTxIndex"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "TransactionOutput",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "datum",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "inline_datum_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Datum",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "script",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "reference_script_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Script",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "txHash": "hash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "tokens",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "tx_out_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "TokenInOutput",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "address",
+                    "addressHasScript",
+                    "index",
+                    "paymentCredential",
+                    "txHash",
+                    "value"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "Utxo",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "utxos",
+                "select_aggregate": "utxos_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "datum",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "inline_datum_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Datum",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "script",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "reference_script_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Script",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "txHash": "hash"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "tokens",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "tx_out_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "TokenInOutput",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "address",
+                    "addressHasScript",
+                    "index",
+                    "txHash",
+                    "value"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "Withdrawal",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "withdrawals",
+                "select_aggregate": "withdrawals_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "redeemer",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "redeemerId": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Redeemer",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "amount",
+                    "address"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "ada_pots",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "deposits_stake",
+                    "deposits_drep",
+                    "deposits_proposal",
+                    "fees",
+                    "reserves",
+                    "rewards",
+                    "slot_no",
+                    "treasury",
+                    "utxo"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "committee",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "committeeMembers",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "committee_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "committee_member",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "govActionProposal",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "gov_action_proposal_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "gov_action_proposal",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "gov_action_proposal_id",
+                    "quorum_denominator",
+                    "quorum_numerator",
+                    "id"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "committee_de_registration",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "committeeDeRegistration",
+                "select_aggregate": "committeeDeRegistration_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "votingAnchor",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "voting_anchor_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "voting_anchor",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "cert_index",
+                    "cold_key_id",
+                    "tx_id",
+                    "voting_anchor_id"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "committee_hash",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "committeeHash",
+                "select_aggregate": "committeeHash_aggregate"
+              }
+            },
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "has_script",
+                    "raw"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "committee_member",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "committeeMember",
+                "select_aggregate": "committeeMember_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "committee",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "committee_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "committee",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "committeeHash",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "committee_hash_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "committee_hash",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "committee_hash_id",
+                    "committee_id",
+                    "expiration_epoch",
+                    "id"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "committee_registration",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "committeeRegistration",
+                "select_aggregate": "committeeRegistration_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "cert_index",
+                    "cold_key_id",
+                    "hot_key_id",
+                    "tx_id"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "drep_distr",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "DrepHash",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "hash_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "drep_hash",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "Epoch",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "epoch_no": "number"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Epoch",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "drep_hash",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "drepHash",
+                "select_aggregate": "drepHash_aggregate"
+              }
+            },
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "view",
+                    "has_script",
+                    "raw"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "epoch_param",
+              "schema": "public"
+            }
+          },
+          {
+            "table": {
+              "name": "gov_action_proposal",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "govActionProposal",
+                "select_aggregate": "govActionProposal_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "PreviousGovAction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "prev_gov_action_proposal": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "gov_action_proposal",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "VotingAnchor",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "voting_anchor_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "voting_anchor",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "tx",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "tx_id",
+                    "index",
+                    "prev_gov_action_proposal",
+                    "deposit",
+                    "return_address",
+                    "expiration",
+                    "voting_anchor_id",
+                    "type",
+                    "description"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "off_chain_vote_author",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "offChainVoteAuthor",
+                "select_aggregate": "offChainVoteAuthor_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "offChainVoteData",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "off_chain_vote_data_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "off_chain_vote_data",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "name",
+                    "off_chain_vote_data_id",
+                    "public_key",
+                    "signature",
+                    "warning",
+                    "witness_algorithm"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "off_chain_vote_data",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "offChainVoteData",
+                "select_aggregate": "offChainVoteData_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "ofChainVoteReference",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "off_chain_vote_data_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "off_chain_vote_reference",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "offChainVoteAuthor",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "off_chain_vote_data_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "off_chain_vote_author",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "offChainVoteDrepData",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "off_chain_vote_data_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "off_chain_vote_drep_data",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "offChainVoteGovActionData",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "off_chain_vote_data_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "off_chain_vote_gov_action_data",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "bytes",
+                    "comment",
+                    "hash",
+                    "is_valid",
+                    "json",
+                    "voting_anchor_id",
+                    "warning"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "off_chain_vote_drep_data",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "offChainVoteDrepData",
+                "select_aggregate": "offChainVoteDrepData_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "offChainVoteData",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "off_chain_vote_data_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "off_chain_vote_data",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "given_name",
+                    "image_hash",
+                    "image_url",
+                    "motivations",
+                    "objectives",
+                    "off_chain_vote_data_id",
+                    "payment_address",
+                    "qualifications"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "off_chain_vote_gov_action_data",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "offChainVoteGovActionData",
+                "select_aggregate": "offChainVoteGovActionData_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "OffChainVoteData",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "off_chain_vote_data_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "off_chain_vote_data",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "abstract",
+                    "motivation",
+                    "off_chain_vote_data_id",
+                    "rationale",
+                    "title"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "off_chain_vote_reference",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "offChainVoteReference",
+                "select_aggregate": "offChainVoteReference_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "OffChainVoteData",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "off_chain_vote_data_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "off_chain_vote_data",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "hash_algorithm",
+                    "hash_digest",
+                    "label",
+                    "off_chain_vote_data_id",
+                    "uri"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "pool_hash",
+              "schema": "public"
+            }
+          },
+          {
+            "table": {
+              "name": "pool_relay",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {
+                "dns_name": {
+                  "custom_name": "dnsName"
+                },
+                "dns_srv_name": {
+                  "custom_name": "dnsSrvName"
+                }
+              },
+              "custom_column_names": {
+                "dns_name": "dnsName",
+                "dns_srv_name": "dnsSrvName"
+              },
+              "custom_root_fields": {}
+            },
+            "object_relationships": [
+              {
+                "name": "stakePool",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "update_id": "update_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "StakePool",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "dns_name",
+                    "dns_srv_name",
+                    "ipv4",
+                    "ipv6",
+                    "port"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "pool_stat",
+              "schema": "public"
+            }
+          },
+          {
+            "table": {
+              "name": "reserve",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "addr_id",
+                    "amount",
+                    "cert_index",
+                    "tx_id"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "stake_address",
+              "schema": "public"
+            }
+          },
+          {
+            "table": {
+              "name": "treasury_withdrawal",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "GovActionProposal",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "gov_action_proposal_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "gov_action_proposal",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "StakeAddress",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "stake_address_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "stake_address",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "tx",
+              "schema": "public"
+            }
+          },
+          {
+            "table": {
+              "name": "tx_metadata",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {
+                "json": {
+                  "custom_name": "value"
+                }
+              },
+              "custom_column_names": {
+                "json": "value"
+              },
+              "custom_root_fields": {}
+            },
+            "object_relationships": [
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "json",
+                    "key"
+                  ],
+                  "filter": {},
+                  "limit": 2500
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "voting_anchor",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "votingAnchor",
+                "select_aggregate": "votingAnchor_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "offChainData",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "id": "voting_anchor_id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "off_chain_vote_data",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "block_id",
+                    "data_hash",
+                    "type",
+                    "url"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "voting_procedure",
+              "schema": "public"
+            },
+            "configuration": {
+              "column_config": {},
+              "custom_column_names": {},
+              "custom_root_fields": {
+                "select": "voteProcedure",
+                "select_aggregate": "voteProcedure_aggregate"
+              }
+            },
+            "object_relationships": [
+              {
+                "name": "committeeVoter",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "committee_voter": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "committee_hash",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "drepVoter",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "drep_voter": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "drep_hash",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "govActionProposal",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "gov_action_proposal_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "gov_action_proposal",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "poolVoter",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "pool_voter": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "pool_hash",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "transaction",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "tx_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "Transaction",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "votingAnchor",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "voting_anchor_id": "id"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "voting_anchor",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "cardano-graphql",
+                "permission": {
+                  "columns": [
+                    "committee_voter",
+                    "drep_voter",
+                    "gov_action_proposal_id",
+                    "index",
+                    "invalid",
+                    "pool_voter",
+                    "tx_id",
+                    "vote",
+                    "voter_role",
+                    "voting_anchor_id"
+                  ],
+                  "filter": {},
+                  "limit": 2500,
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          }
+        ],
+        "configuration": {
+          "connection_info": {
+            "database_url": {
+              "from_env": "HASURA_GRAPHQL_DATABASE_URL"
+            },
+            "isolation_level": "read-committed",
+            "pool_settings": {
+              "connection_lifetime": 600,
+              "idle_timeout": 180,
+              "max_connections": 50,
+              "retries": 1
+            },
+            "use_prepared_statements": true
+          }
+        }
+      }
+    ]
+  }
+}
