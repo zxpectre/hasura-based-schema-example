@@ -1,0 +1,5684 @@
+{
+  "dbs": {
+    "dandelion_lite": {
+      "schemas": {
+        "public": {
+          "tables": {
+            "epoch": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "out_sum": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "fees": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "tx_count": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "blk_count": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                },
+                "start_time": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "timestamp",
+                  "type": "timestamp"
+                },
+                "end_time": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "timestamp",
+                  "type": "timestamp"
+                }
+              }
+            },
+            "AdaPots": {
+              "isView": true,
+              "fields": {
+                "epochNo": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "deposits_stake": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "deposits_drep": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "fees": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "reserves": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "rewards": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "slotNo": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "treasury": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "utxo": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                }
+              }
+            },
+            "epoch_sync_time": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "seconds": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "state": {
+                  "isNotNull": true,
+                  "isUserDefinedType": true,
+                  "udt": "public.syncstatetype",
+                  "type": "syncstatetype",
+                  "enumValues": [
+                    "lagging",
+                    "following"
+                  ]
+                }
+              }
+            },
+            "Block": {
+              "isView": true,
+              "fields": {
+                "fees": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "number": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "opCert": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "previousBlockHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "nextBlockHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "protocolVersion": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "jsonb",
+                  "type": "jsonb",
+                  "isAlias": true
+                },
+                "size": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "transactionsCount": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "epochNo": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "forgedAt": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "timestamp",
+                  "type": "timestamp",
+                  "isAlias": true
+                },
+                "slotInEpoch": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "slotNo": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "slot_leader_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "pool_hash_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "vrfKey": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isAlias": true
+                }
+              }
+            },
+            "Cardano": {
+              "isView": true,
+              "fields": {
+                "tipBlockNo": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "currentEpochNo": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                }
+              }
+            },
+            "collateral_tx_out": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int2",
+                  "type": "smallint",
+                  "isUnique": true
+                },
+                "address": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "address_has_script": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bool",
+                  "type": "boolean"
+                },
+                "payment_cred": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "stake_address_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "value": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "data_hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "multi_assets_descr": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "inline_datum_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "reference_script_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "CollateralInput": {
+              "isView": true,
+              "fields": {
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "value": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "txHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "sourceTxHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "sourceTxIndex": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int2",
+                  "type": "smallint",
+                  "isAlias": true
+                },
+                "source_tx_out_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                }
+              }
+            },
+            "slot_leader": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "hash": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "pool_hash_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "description": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                }
+              }
+            },
+            "block": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "hash": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "epoch_no": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "slot_no": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "epoch_slot_no": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "block_no": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "previous_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "slot_leader_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "size": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "time": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "timestamp",
+                  "type": "timestamp"
+                },
+                "tx_count": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "proto_major": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "proto_minor": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "vrf_key": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "op_cert": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "op_cert_counter": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "withdrawal": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "addr_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "amount": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "redeemer_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                }
+              }
+            },
+            "CollateralOutput": {
+              "isView": true,
+              "fields": {
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "addressHasScript": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bool",
+                  "type": "boolean",
+                  "isAlias": true
+                },
+                "value": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "txHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "index": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int2",
+                  "type": "smallint"
+                },
+                "inline_datum_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "reference_script_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "paymentCredential": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                }
+              }
+            },
+            "multi_asset": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "policy": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "name": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "fingerprint": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isUnique": true
+                }
+              }
+            },
+            "Delegation": {
+              "isView": true,
+              "fields": {
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isAlias": true
+                },
+                "redeemerId": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "pool_hash_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "pool_relay": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "update_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "ipv4": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isUnique": true
+                },
+                "ipv6": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isUnique": true
+                },
+                "dns_name": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isUnique": true
+                },
+                "dns_srv_name": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "port": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                }
+              }
+            },
+            "DelegationVote": {
+              "isView": true,
+              "fields": {
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isAlias": true
+                },
+                "redeemerId": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "drep_hash_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "pool_hash": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "hash_raw": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "view": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                }
+              }
+            },
+            "reserve": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "addr_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "cert_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                },
+                "amount": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                }
+              }
+            },
+            "Epoch": {
+              "isView": true,
+              "fields": {
+                "fees": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "output": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "number": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "nonce": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "transactionsCount": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "startedAt": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "timestamp",
+                  "type": "timestamp",
+                  "isAlias": true
+                },
+                "lastBlockTime": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "timestamp",
+                  "type": "timestamp",
+                  "isAlias": true
+                },
+                "blocksCount": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                }
+              }
+            },
+            "meta": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "start_time": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "timestamp",
+                  "type": "timestamp",
+                  "isUnique": true
+                },
+                "network_name": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "version": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                }
+              }
+            },
+            "redeemer": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "unit_mem": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "unit_steps": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "fee": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "purpose": {
+                  "isNotNull": true,
+                  "isUserDefinedType": true,
+                  "udt": "public.scriptpurposetype",
+                  "type": "scriptpurposetype",
+                  "enumValues": [
+                    "spend",
+                    "mint",
+                    "cert",
+                    "reward",
+                    "vote",
+                    "propose"
+                  ],
+                  "isUnique": true
+                },
+                "index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                },
+                "script_hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "redeemer_data_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "committee_registration": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "cert_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "cold_key_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "hot_key_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "epoch_stake": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true,
+                  "isUnique": true
+                },
+                "addr_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "pool_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "amount": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "epoch_no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                }
+              }
+            },
+            "Datum": {
+              "isView": true,
+              "fields": {
+                "bytes": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "value": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "jsonb",
+                  "type": "jsonb"
+                }
+              }
+            },
+            "RedeemerDatum": {
+              "isView": true,
+              "fields": {
+                "bytes": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "value": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "jsonb",
+                  "type": "jsonb"
+                }
+              }
+            },
+            "ProtocolParams": {
+              "isView": true,
+              "fields": {
+                "a0": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float",
+                  "isAlias": true
+                },
+                "coinsPerUtxoByte": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "collateralPercent": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "costModels": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "jsonb",
+                  "type": "jsonb",
+                  "isAlias": true
+                },
+                "decentralisationParam": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float",
+                  "isAlias": true
+                },
+                "maxCollateralInputs": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "eMax": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "epoch_no": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "extraEntropy": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "keyDeposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "maxBlockBodySize": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "maxBlockExMem": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "maxBlockExSteps": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "maxBlockHeaderSize": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "maxTxExMem": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "maxTxExSteps": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "maxTxSize": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "maxValSize": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "minFeeA": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "minFeeB": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "minPoolCost": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "minUTxOValue": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "nOpt": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "poolDeposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "priceMem": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float",
+                  "isAlias": true
+                },
+                "priceStep": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float",
+                  "isAlias": true
+                },
+                "protocolVersion": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "jsonb",
+                  "type": "jsonb",
+                  "isAlias": true
+                },
+                "rho": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float",
+                  "isAlias": true
+                },
+                "tau": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float",
+                  "isAlias": true
+                }
+              }
+            },
+            "Redeemer": {
+              "isView": true,
+              "fields": {
+                "fee": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "index": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "purpose": {
+                  "isNotNull": false,
+                  "isUserDefinedType": true,
+                  "udt": "public.scriptpurposetype",
+                  "type": "scriptpurposetype",
+                  "enumValues": [
+                    "spend",
+                    "mint",
+                    "cert",
+                    "reward",
+                    "vote",
+                    "propose"
+                  ]
+                },
+                "scriptHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "txId": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "unitMem": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "unitSteps": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "redeemer_datum_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                }
+              }
+            },
+            "ReferenceInput": {
+              "isView": true,
+              "fields": {
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "value": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "txHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "sourceTxHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "sourceTxIndex": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int2",
+                  "type": "smallint",
+                  "isAlias": true
+                },
+                "source_tx_out_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                }
+              }
+            },
+            "Reward": {
+              "isView": true,
+              "fields": {
+                "amount": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isAlias": true
+                },
+                "earnedInEpochNo": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "pool_hash_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "receivedInEpochNo": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "type": {
+                  "isNotNull": false,
+                  "isUserDefinedType": true,
+                  "udt": "public.rewardtype",
+                  "type": "rewardtype",
+                  "enumValues": [
+                    "leader",
+                    "member",
+                    "reserves",
+                    "treasury",
+                    "refund",
+                    "proposal_refund"
+                  ]
+                }
+              }
+            },
+            "Script": {
+              "isView": true,
+              "fields": {
+                "hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "serialisedSize": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "type": {
+                  "isNotNull": false,
+                  "isUserDefinedType": true,
+                  "udt": "public.scripttype",
+                  "type": "scripttype",
+                  "enumValues": [
+                    "multisig",
+                    "timelock",
+                    "plutusV1",
+                    "plutusV2",
+                    "plutusV3"
+                  ]
+                },
+                "txId": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                }
+              }
+            },
+            "SlotLeader": {
+              "isView": true,
+              "fields": {
+                "hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "description": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "pool_hash_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "StakeDeregistration": {
+              "isView": true,
+              "fields": {
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isAlias": true
+                },
+                "redeemerId": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "stake_address": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "hash_raw": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "view": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "script_hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                }
+              }
+            },
+            "tx_out": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int2",
+                  "type": "smallint",
+                  "isUnique": true
+                },
+                "address": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "address_has_script": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bool",
+                  "type": "boolean"
+                },
+                "payment_cred": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "stake_address_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "value": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "data_hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "inline_datum_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "reference_script_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "consumed_by_tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "StakePool": {
+              "isView": true,
+              "fields": {
+                "fixedCost": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isAlias": true
+                },
+                "hash_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "update_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "margin": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "metadataHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "blockNo": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "updated_in_tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "pledge": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "rewardAddress": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isAlias": true
+                },
+                "url": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "deposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                }
+              }
+            },
+            "StakePoolOwner": {
+              "isView": true,
+              "fields": {
+                "hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "pool_hash_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                }
+              }
+            },
+            "tx_in": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "tx_in_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "tx_out_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "tx_out_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int2",
+                  "type": "smallint"
+                },
+                "redeemer_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "collateral_tx_in": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "tx_in_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "tx_out_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "tx_out_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int2",
+                  "type": "smallint",
+                  "isUnique": true
+                }
+              }
+            },
+            "script": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "hash": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "type": {
+                  "isNotNull": true,
+                  "isUserDefinedType": true,
+                  "udt": "public.scripttype",
+                  "type": "scripttype",
+                  "enumValues": [
+                    "multisig",
+                    "timelock",
+                    "plutusV1",
+                    "plutusV2",
+                    "plutusV3"
+                  ]
+                },
+                "json": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "jsonb",
+                  "type": "jsonb"
+                },
+                "bytes": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "serialised_size": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                }
+              }
+            },
+            "StakePoolRetirement": {
+              "isView": true,
+              "fields": {
+                "inEffectFrom": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "pool_hash_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                }
+              }
+            },
+            "StakeRegistration": {
+              "isView": true,
+              "fields": {
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isAlias": true
+                },
+                "tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "deposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                }
+              }
+            },
+            "DrepRegistration": {
+              "isView": true,
+              "fields": {
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "DRepId": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isAlias": true
+                },
+                "tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "deposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "voting_anchor_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "ActiveStake": {
+              "isView": true,
+              "fields": {
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isAlias": true
+                },
+                "amount": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "epochNo": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "stakePoolHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "stakePoolId": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isAlias": true
+                }
+              }
+            },
+            "TokenMint": {
+              "isView": true,
+              "fields": {
+                "assetId": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "assetName": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "policyId": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "quantity": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "TokenInOutput": {
+              "isView": true,
+              "fields": {
+                "assetId": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "assetName": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "policyId": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "quantity": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "tx_out_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "Transaction": {
+              "isView": true,
+              "fields": {
+                "blockHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "blockIndex": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "deposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "fee": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "includedAt": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "timestamp",
+                  "type": "timestamp",
+                  "isAlias": true
+                },
+                "invalidBefore": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "invalidHereafter": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                },
+                "scriptSize": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isAlias": true
+                },
+                "size": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "totalOutput": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "validContract": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bool",
+                  "type": "boolean",
+                  "isAlias": true
+                },
+                "treasuryDonation": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isAlias": true
+                }
+              }
+            },
+            "TransactionInput": {
+              "isView": true,
+              "fields": {
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "redeemerId": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "value": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "txHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "sourceTxHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "sourceTxIndex": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int2",
+                  "type": "smallint",
+                  "isAlias": true
+                },
+                "source_tx_out_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                }
+              }
+            },
+            "TransactionOutput": {
+              "isView": true,
+              "fields": {
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "addressHasScript": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bool",
+                  "type": "boolean",
+                  "isAlias": true
+                },
+                "value": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "txHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "index": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int2",
+                  "type": "smallint"
+                },
+                "inline_datum_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "reference_script_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "paymentCredential": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                }
+              }
+            },
+            "Utxo": {
+              "isView": true,
+              "fields": {
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "addressHasScript": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bool",
+                  "type": "boolean",
+                  "isAlias": true
+                },
+                "value": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "txHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isAlias": true
+                },
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "index": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int2",
+                  "type": "smallint"
+                },
+                "inline_datum_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "reference_script_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "Withdrawal": {
+              "isView": true,
+              "fields": {
+                "amount": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isAlias": true
+                },
+                "redeemerId": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isAlias": true
+                },
+                "tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "committee_de_registration": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "cert_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "voting_anchor_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "cold_key_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "epoch_param": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "epoch_no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                },
+                "min_fee_a": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "min_fee_b": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "max_block_size": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "max_tx_size": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "max_bh_size": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "key_deposit": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "pool_deposit": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "max_epoch": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "optimal_pool_count": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "influence": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "monetary_expand_rate": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "treasury_growth_rate": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "decentralisation": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "protocol_major": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "protocol_minor": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "min_utxo_value": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "min_pool_cost": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "nonce": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "cost_model_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "price_mem": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "price_step": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "max_tx_ex_mem": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "max_tx_ex_steps": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "max_block_ex_mem": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "max_block_ex_steps": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "max_val_size": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "collateral_percent": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "max_collateral_inputs": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "block_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "extra_entropy": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "coins_per_utxo_size": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "pvt_motion_no_confidence": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "pvt_committee_normal": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "pvt_committee_no_confidence": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "pvt_hard_fork_initiation": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_motion_no_confidence": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_committee_normal": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_committee_no_confidence": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_update_to_constitution": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_hard_fork_initiation": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_p_p_network_group": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_p_p_economic_group": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_p_p_technical_group": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_p_p_gov_group": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_treasury_withdrawal": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "committee_min_size": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "committee_max_term_length": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "gov_action_lifetime": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "gov_action_deposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "drep_deposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "drep_activity": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "pvtpp_security_group": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "min_fee_ref_script_cost_per_byte": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                }
+              }
+            },
+            "extra_migrations": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "token": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "description": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                }
+              }
+            },
+            "off_chain_vote_author": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "off_chain_vote_data_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "name": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "witness_algorithm": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "public_key": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "signature": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "warning": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                }
+              }
+            },
+            "committee_hash": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "raw": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "has_script": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bool",
+                  "type": "boolean",
+                  "isUnique": true
+                }
+              }
+            },
+            "schema_version": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "stage_one": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "stage_two": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "stage_three": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "ada_pots": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "slot_no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "epoch_no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "treasury": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "reserves": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "rewards": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "utxo": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "deposits_stake": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "fees": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "block_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "deposits_drep": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "deposits_proposal": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                }
+              }
+            },
+            "tx": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "hash": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "block_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "block_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "out_sum": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "fee": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "deposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "size": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "invalid_before": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "invalid_hereafter": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "valid_contract": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bool",
+                  "type": "boolean"
+                },
+                "script_size": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "treasury_donation": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                }
+              }
+            },
+            "datum": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "hash": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "value": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "jsonb",
+                  "type": "jsonb"
+                },
+                "bytes": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                }
+              }
+            },
+            "stake_registration": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "addr_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "cert_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                },
+                "epoch_no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "deposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                }
+              }
+            },
+            "pool_metadata_ref": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "pool_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "url": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "hash": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "registered_tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "off_chain_pool_fetch_error": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "pool_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "fetch_time": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "timestamp",
+                  "type": "timestamp",
+                  "isUnique": true
+                },
+                "pmr_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "fetch_error": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "retry_count": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                }
+              }
+            },
+            "reverse_index": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "block_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "min_ids": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                }
+              }
+            },
+            "committee_member": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "committee_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isForeign": true,
+                  "relation": {
+                    "schema": "public",
+                    "table": "committee",
+                    "column": "id"
+                  }
+                },
+                "committee_hash_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "expiration_epoch": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                }
+              }
+            },
+            "tx_cbor": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "bytes": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                }
+              }
+            },
+            "voting_procedure": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "gov_action_proposal_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "voter_role": {
+                  "isNotNull": true,
+                  "isUserDefinedType": true,
+                  "udt": "public.voterrole",
+                  "type": "voterrole",
+                  "enumValues": [
+                    "ConstitutionalCommittee",
+                    "DRep",
+                    "SPO"
+                  ]
+                },
+                "drep_voter": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "pool_voter": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "vote": {
+                  "isNotNull": true,
+                  "isUserDefinedType": true,
+                  "udt": "public.vote",
+                  "type": "vote",
+                  "enumValues": [
+                    "Yes",
+                    "No",
+                    "Abstain"
+                  ]
+                },
+                "voting_anchor_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "committee_voter": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "invalid": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "off_chain_vote_reference": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "off_chain_vote_data_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "label": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "uri": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "hash_digest": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "hash_algorithm": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                }
+              }
+            },
+            "off_chain_vote_data": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "voting_anchor_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "hash": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "json": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "jsonb",
+                  "type": "jsonb"
+                },
+                "bytes": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "warning": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "language": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "comment": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "is_valid": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bool",
+                  "type": "boolean"
+                }
+              }
+            },
+            "off_chain_vote_fetch_error": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "voting_anchor_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "fetch_error": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "fetch_time": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "timestamp",
+                  "type": "timestamp"
+                },
+                "retry_count": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                }
+              }
+            },
+            "off_chain_vote_drep_data": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "off_chain_vote_data_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "payment_address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "given_name": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "objectives": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "motivations": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "qualifications": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "image_url": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "image_hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                }
+              }
+            },
+            "new_committee": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "gov_action_proposal_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "deleted_members": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "added_members": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "quorum_numerator": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "quorum_denominator": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "committee": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "gov_action_proposal_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "quorum_numerator": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "quorum_denominator": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "reward_rest": {
+              "isView": false,
+              "fields": {
+                "addr_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "type": {
+                  "isNotNull": true,
+                  "isUserDefinedType": true,
+                  "udt": "public.rewardtype",
+                  "type": "rewardtype",
+                  "enumValues": [
+                    "leader",
+                    "member",
+                    "reserves",
+                    "treasury",
+                    "refund",
+                    "proposal_refund"
+                  ]
+                },
+                "amount": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "spendable_epoch": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "earned_epoch": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "pool_update": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "hash_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "cert_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                },
+                "vrf_key_hash": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "pledge": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "active_epoch_no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "meta_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "margin": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "fixed_cost": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "registered_tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "reward_addr_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "deposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                }
+              }
+            },
+            "extra_key_witness": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "hash": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "delegation_vote": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "addr_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "cert_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "drep_hash_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "redeemer_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "drep_hash": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "raw": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "view": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "has_script": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bool",
+                  "type": "boolean",
+                  "isUnique": true
+                }
+              }
+            },
+            "pool_stat": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "pool_hash_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "epoch_no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "number_of_blocks": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "number_of_delegators": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "stake": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "voting_power": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                }
+              }
+            },
+            "off_chain_vote_external_update": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "off_chain_vote_data_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "title": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "uri": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                }
+              }
+            },
+            "redeemer_data": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "hash": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "value": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "jsonb",
+                  "type": "jsonb"
+                },
+                "bytes": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                }
+              }
+            },
+            "event_info": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "epoch": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "type": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "explanation": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                }
+              }
+            },
+            "reference_tx_in": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "tx_in_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "tx_out_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "tx_out_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int2",
+                  "type": "smallint",
+                  "isUnique": true
+                }
+              }
+            },
+            "drep_registration": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "cert_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "deposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "drep_hash_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "voting_anchor_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "ma_tx_out": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "quantity": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "tx_out_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "ident": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                }
+              }
+            },
+            "treasury_withdrawal": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "gov_action_proposal_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "stake_address_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "amount": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                }
+              }
+            },
+            "pot_transfer": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "cert_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                },
+                "treasury": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "reserves": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                }
+              }
+            },
+            "drep_distr": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "hash_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "amount": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "epoch_no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                },
+                "active_until": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                }
+              }
+            },
+            "ma_tx_mint": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "quantity": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "ident": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                }
+              }
+            },
+            "pool_retire": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "hash_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "cert_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                },
+                "announced_tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "retiring_epoch": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                }
+              }
+            },
+            "constitution": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "gov_action_proposal_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "voting_anchor_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "script_hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                }
+              }
+            },
+            "delisted_pool": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "hash_raw": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                }
+              }
+            },
+            "epoch_state": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "committee_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "no_confidence_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "constitution_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "epoch_no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                }
+              }
+            },
+            "off_chain_vote_gov_action_data": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "off_chain_vote_data_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "title": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "abstract": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "motivation": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "rationale": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                }
+              }
+            },
+            "treasury": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "addr_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "cert_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                },
+                "amount": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                }
+              }
+            },
+            "stake_deregistration": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "addr_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "cert_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                },
+                "epoch_no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "redeemer_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "delegation": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "addr_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "cert_index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                },
+                "pool_hash_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "active_epoch_no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "slot_no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "redeemer_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "gov_action_proposal": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "index": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "prev_gov_action_proposal": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "deposit": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "return_address": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "expiration": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "voting_anchor_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "type": {
+                  "isNotNull": true,
+                  "isUserDefinedType": true,
+                  "udt": "public.govactiontype",
+                  "type": "govactiontype",
+                  "enumValues": [
+                    "ParameterChange",
+                    "HardForkInitiation",
+                    "TreasuryWithdrawals",
+                    "NoConfidence",
+                    "NewCommittee",
+                    "NewConstitution",
+                    "InfoAction"
+                  ]
+                },
+                "description": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "jsonb",
+                  "type": "jsonb"
+                },
+                "param_proposal": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "ratified_epoch": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "enacted_epoch": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "dropped_epoch": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "expired_epoch": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                }
+              }
+            },
+            "reward": {
+              "isView": false,
+              "fields": {
+                "addr_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "type": {
+                  "isNotNull": true,
+                  "isUserDefinedType": true,
+                  "udt": "public.rewardtype",
+                  "type": "rewardtype",
+                  "enumValues": [
+                    "leader",
+                    "member",
+                    "reserves",
+                    "treasury",
+                    "refund",
+                    "proposal_refund"
+                  ],
+                  "isUnique": true
+                },
+                "amount": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "spendable_epoch": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "pool_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "earned_epoch": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                }
+              }
+            },
+            "param_proposal": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "epoch_no": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "key": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "min_fee_a": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "min_fee_b": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "max_block_size": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "max_tx_size": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "max_bh_size": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "key_deposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "pool_deposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "max_epoch": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "optimal_pool_count": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "influence": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "monetary_expand_rate": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "treasury_growth_rate": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "decentralisation": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "entropy": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "protocol_major": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "protocol_minor": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "min_utxo_value": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "min_pool_cost": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "cost_model_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "price_mem": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "price_step": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "max_tx_ex_mem": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "max_tx_ex_steps": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "max_block_ex_mem": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "max_block_ex_steps": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "max_val_size": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "collateral_percent": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "max_collateral_inputs": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "registered_tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "coins_per_utxo_size": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "pvt_motion_no_confidence": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "pvt_committee_normal": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "pvt_committee_no_confidence": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "pvt_hard_fork_initiation": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_motion_no_confidence": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_committee_normal": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_committee_no_confidence": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_update_to_constitution": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_hard_fork_initiation": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_p_p_network_group": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_p_p_economic_group": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_p_p_technical_group": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_p_p_gov_group": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "dvt_treasury_withdrawal": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "committee_min_size": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "committee_max_term_length": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "gov_action_lifetime": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "gov_action_deposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "drep_deposit": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "drep_activity": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "pvtpp_security_group": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                },
+                "min_fee_ref_script_cost_per_byte": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "float8",
+                  "type": "float"
+                }
+              }
+            },
+            "cost_model": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "costs": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "jsonb",
+                  "type": "jsonb"
+                },
+                "hash": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                }
+              }
+            },
+            "off_chain_pool_data": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "pool_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "ticker_name": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "hash": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "json": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "jsonb",
+                  "type": "jsonb"
+                },
+                "bytes": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "pmr_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                }
+              }
+            },
+            "reserved_pool_ticker": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "name": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isUnique": true
+                },
+                "pool_hash": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                }
+              }
+            },
+            "pool_owner": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "addr_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                },
+                "pool_update_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                }
+              }
+            },
+            "tx_metadata": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "key": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric",
+                  "isUnique": true
+                },
+                "json": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "jsonb",
+                  "type": "jsonb"
+                },
+                "bytes": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "tx_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isUnique": true
+                }
+              }
+            },
+            "epoch_stake_progress": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "epoch_no": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer",
+                  "isUnique": true
+                },
+                "completed": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bool",
+                  "type": "boolean"
+                }
+              }
+            },
+            "voting_anchor": {
+              "isView": false,
+              "fields": {
+                "id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint",
+                  "isPrimaryKey": true
+                },
+                "url": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string",
+                  "isUnique": true
+                },
+                "data_hash": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isUnique": true
+                },
+                "type": {
+                  "isNotNull": true,
+                  "isUserDefinedType": true,
+                  "udt": "public.anchortype",
+                  "type": "anchortype",
+                  "enumValues": [
+                    "gov_action",
+                    "drep",
+                    "other",
+                    "vote",
+                    "committee_dereg",
+                    "constitution"
+                  ],
+                  "isUnique": true
+                },
+                "block_id": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "Asset": {
+              "isView": false,
+              "fields": {
+                "assetId": {
+                  "isNotNull": true,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea",
+                  "isPrimaryKey": true
+                },
+                "assetName": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "decimals": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "description": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "fingerprint": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bpchar",
+                  "type": "character"
+                },
+                "firstAppearedInSlot": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int4",
+                  "type": "integer"
+                },
+                "logo": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "metadataHash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bpchar",
+                  "type": "character"
+                },
+                "name": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "policyId": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "ticker": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "url": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                }
+              }
+            },
+            "utxo_byron_view": {
+              "isView": true,
+              "fields": {
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "index": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int2",
+                  "type": "smallint"
+                },
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "address_has_script": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bool",
+                  "type": "boolean"
+                },
+                "payment_cred": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "stake_address_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "value": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "data_hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "inline_datum_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "reference_script_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "consumed_by_tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            },
+            "utxo_view": {
+              "isView": true,
+              "fields": {
+                "id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "index": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int2",
+                  "type": "smallint"
+                },
+                "address": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "varchar",
+                  "type": "string"
+                },
+                "address_has_script": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bool",
+                  "type": "boolean"
+                },
+                "payment_cred": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "stake_address_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "value": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "numeric",
+                  "type": "numeric"
+                },
+                "data_hash": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "bytea",
+                  "type": "bytea"
+                },
+                "inline_datum_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "reference_script_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                },
+                "consumed_by_tx_id": {
+                  "isNotNull": false,
+                  "isUserDefinedType": false,
+                  "udt": "int8",
+                  "type": "bigint"
+                }
+              }
+            }
+          }
+        }        
+      }
+    }
+  }
+}

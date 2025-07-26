@@ -1,0 +1,31 @@
+{
+  "name": "hasura-based-schema-example",
+  "version": "0.0.1",
+  "description": "Aims to identify logic and fully replicate the gql schema generation from Hasura",
+  "type": "commonjs",
+  "dependencies": {
+    "@hasura/metadata": "^1.0.2",
+    "chalk": "^5.4.1",
+    "diff": "^8.0.2",
+    "graphql": "^16.11.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@pgsql/types": "^17.6.1",
+    "@types/node": "^16.11.10",
+    "ts-node": "10.7.0",
+    "typescript": "^5.2.2"
+  },
+  "scripts": {
+    "generate:hasura": "ts-node scripts/generateHasuraSchema.ts schemas/db.json schemas/hasura_metadata.json output/hasura.graphql",
+    "test:hasura": "ts-node scripts/gqlDiff.ts schemas/hasura.graphql output/hasura.graphql allChecks",
+    "test:hasura:query": "ts-node scripts/gqlDiff.ts schemas/hasura.graphql output/hasura.graphql whitelist query_root",
+    "test:hasura:mutation": "ts-node scripts/gqlDiff.ts schemas/hasura.graphql output/hasura.graphql whitelist mutation_root",
+    "test:hasura:subscription": "ts-node scripts/gqlDiff.ts schemas/hasura.graphql output/hasura.graphql whitelist subscription_root",
+    "test:hasura:differencies": "ts-node scripts/gqlDiff.ts schemas/hasura.graphql output/hasura.graphql onlyDifferencies",
+    "test:hasura:missing": "ts-node scripts/gqlDiff.ts schemas/hasura.graphql output/hasura.graphql onlyMissing",
+    "test:hasura:extras": "ts-node scripts/gqlDiff.ts schemas/hasura.graphql output/hasura.graphql onlyExtras",
+    "notes:hasura": "cat scripts/generateHasuraSchema.ts | grep ///",
+    "test": "npm run generate:hasura && npm run test:hasura "
+  }
+}
